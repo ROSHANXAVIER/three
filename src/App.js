@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import {Canvas} from "@react-three/fiber"
+import Box from "./components/Box";
+import Model from "./components/iphone";
 import './App.css';
+import styled from "styled-components";
+
+import {Stars,OrbitControls} from "@react-three/drei"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Box/>
+    <Canvas>
+      
+      <OrbitControls/>
+        <Stars/>
+        <ambientLight intensity={0.5}/>
+        <spotLight position={[10,15,10]} angle={0.3}/>
+        <Model />
+    </Canvas>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  position: relative;
+  background:darkblue;
+
+  canvas {
+    height: 500px;
+  }
+`;
+
+
 
 export default App;
